@@ -10,6 +10,13 @@ export const FilterPanel = styled.div`
   align-items: center;
   grid-template-columns: 1fr auto;
   gap: 15px;
+
+  @media (max-width: 767px) {
+    grid-auto-flow: row;
+    grid-template-columns: auto;
+    gap: 5px;
+    margin-bottom: 30px;
+  }
 `;
 
 export const Filter = styled.div`
@@ -17,6 +24,12 @@ export const Filter = styled.div`
   align-items: center;
   grid-template-columns: auto auto;
   gap: 15px;
+
+  @media (max-width: 560px) {
+    grid-auto-flow: row;
+    grid-template-columns: auto;
+    gap: 5px;
+  }
 `;
 
 export const Empty = styled.div`

@@ -16,34 +16,42 @@ export const PageList = observer(() => {
 
   const handleSearchQuery = useCallback(
     (e: any) => {
-      const filtered = list.filter(
-        t => t?.title?.toLowerCase().includes(e.target.value.toLowerCase().trim()) && t?.completed === sortValue
-      );
+      // TODO: refactor this array, move filter logic to store
+      const filtered = !sortValue
+        ? todo.todos.filter(t => t?.title?.toLowerCase().includes(e.target.value.toLowerCase().trim()))
+        : todo.todos
+            .filter(t => t?.title?.toLowerCase().includes(e.target.value.toLowerCase().trim()))
+            .filter(t => t?.completed === sortValue);
 
       setSearchQuery(e.target.value);
 
-      e.target.value.length > 0 ? setList(filtered) : setList(todo.todos);
+      setList(filtered);
     },
-    [list, sortValue]
+    [sortValue]
   );
 
   const handleSorting = useCallback(
     (e: any) => {
-      let completed = e.target.value === 'completed' ? true : false;
+      const completed = e.target.value === 'completed' && true;
 
-      const sorted = list.filter(
-        t => t?.completed === completed && t?.title?.toLowerCase().includes(searchQuery.toLowerCase().trim())
-      );
+      // TODO: refactor this array, move filter logic to store
+      const sorted = completed
+        ? todo.todos
+            .filter(t => t?.completed === completed)
+            .filter(t => t?.title?.toLowerCase().includes(searchQuery.toLowerCase().trim()))
+        : todo.todos.filter(t => t?.title?.toLowerCase().includes(searchQuery.toLowerCase().trim()));
 
       setSortValue(completed);
 
-      e.target.value !== '' ? setList(sorted) : setList(todo.todos);
+      setList(sorted);
     },
-    [list, searchQuery]
+    [searchQuery]
   );
 
   useEffect(() => {
     setList(todo.todos);
+    // TODO: refactor this part for deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [todo.todos]);
 
   return (
@@ -69,7 +77,7 @@ export const PageList = observer(() => {
       </FilterPanel>
 
       <List>
-        {list.length ? (
+        {todo.todos.length > 0 &&
           list.map((t: ToDoItem) => (
             <PCard
               key={t.id}
@@ -77,14 +85,15 @@ export const PageList = observer(() => {
               onDelete={() => todo.remove(t.id!)}
               onComplete={() => todo.complete(t.id!)}
             />
-          ))
-        ) : (
-          <Empty>
-            <img src={Images.NotFound} alt="NotFound" />
-            <h2>No Items yet</h2>
-          </Empty>
-        )}
+          ))}
       </List>
+
+      {list.length === 0 && (
+        <Empty>
+          <img src={Images.NotFound} alt="NotFound" />
+          <h2>No Items yet</h2>
+        </Empty>
+      )}
     </>
   );
 });

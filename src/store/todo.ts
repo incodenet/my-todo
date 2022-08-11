@@ -3,21 +3,25 @@ import {ToDoItem} from '../types/custom';
 
 class ToDo {
   todos: ToDoItem[] = [];
+  existed: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
   add(todo: ToDoItem) {
-    if (this.todos.some(t => t.title === todo.title)) return;
+    if (this.todos.some(t => t.title?.trim() === todo.title?.trim())) {
+      this.existed = true;
+
+      return;
+    }
 
     this.todos.push(todo);
+    this.existed = false;
   }
 
   remove(id: number) {
     this.todos = this.todos.filter(t => t.id !== id);
-
-    console.log(id);
   }
 
   complete(id: number) {

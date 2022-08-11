@@ -6,6 +6,10 @@ import {PInput} from '../../primitives/p-input';
 
 export const PageHome = () => {
   const [name, setName] = useState('');
+  const [toast, setToast] = useState<{type: string; text: string}>({
+    type: '',
+    text: '',
+  });
   const [toastActive, setToastActive] = useState(false);
 
   const handleFormSubmit = (e: any) => {
@@ -17,7 +21,12 @@ export const PageHome = () => {
       completed: false,
     });
 
-    setName('');
+    if (todo.existed) {
+      setToast({type: 'warning', text: 'Looks like item already existed...'});
+    } else {
+      setToast({type: 'success', text: 'ToDo item successfully created!'});
+      setName('');
+    }
 
     setToastActive(true);
     setTimeout(() => setToastActive(false), 3500);
@@ -32,7 +41,7 @@ export const PageHome = () => {
           +
         </Button>
       </form>
-      <Toast className={`success ${toastActive && 'active'}`}>ToDo item successfully created!</Toast>
+      <Toast className={`${toast.type} ${toastActive && 'active'}`}>{toast.text}</Toast>
     </>
   );
 };

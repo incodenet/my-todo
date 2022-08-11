@@ -5,6 +5,10 @@ export const Layout = styled.main`
   width: 100%;
   margin: 0 auto;
   padding: 0 15px 50px;
+
+  @media (max-width: 1336px) {
+    max-width: 90vw;
+  }
 `;
 
 export const Button = styled.button`
@@ -56,6 +60,10 @@ export const Toast = styled.div`
 
   &.success {
     background-color: #18bbb4;
+  }
+
+  &.warning {
+    background-color: #e43f5a;
   }
 
   &.active {
