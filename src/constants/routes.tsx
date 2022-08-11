@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 import {PageHome} from '../components/pages/home';
 import {PageList} from '../components/pages/list';
 
@@ -15,7 +16,11 @@ export const Route = {
   notFound: {
     path: '/not-found',
     name: 'Not found',
-    element: <h1>Not Found</h1>,
+    element: (
+      <h1>
+        Not Found: go to <Link to="/">Home</Link>
+      </h1>
+    ),
   },
 };
 
