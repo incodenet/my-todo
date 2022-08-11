@@ -4,7 +4,7 @@ export const Layout = styled.main`
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 15px 50px;
+  padding: 0 0 50px;
 
   @media (max-width: 1336px) {
     max-width: 90vw;
