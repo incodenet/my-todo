@@ -19,9 +19,20 @@ export const Title = styled.h3`
   justify-content: start;
   gap: 8px;
   margin: 0;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+
+  a {
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: #1e88e5;
+    }
+  }
 `;
 
 export const Actions = styled.div`

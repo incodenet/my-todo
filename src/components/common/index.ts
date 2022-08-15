@@ -72,3 +72,17 @@ export const Toast = styled.div`
     transform: translateY(0);
   }
 `;
+
+export const BackButton = styled.button`
+  border: 0;
+  padding: 0;
+  color: grey;
+  font-weight: 600;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: #1e88e5;
+  }
+`;

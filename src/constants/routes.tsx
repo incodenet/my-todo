@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom';
 import {PageHome} from '../components/pages/home';
+import {PageItem} from '../components/pages/item';
 import {PageList} from '../components/pages/list';
 
 export const Route = {
@@ -12,6 +13,11 @@ export const Route = {
     path: '/list',
     name: 'List',
     element: <PageList />,
+  },
+  item: {
+    path: '/item/:id',
+    name: 'Item',
+    element: <PageItem />,
   },
   notFound: {
     path: '/not-found',

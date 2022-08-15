@@ -1,5 +1,6 @@
 import {observer} from 'mobx-react-lite';
 import {memo} from 'react';
+import {Link} from 'react-router-dom';
 import {Images} from '../../../assets/images';
 import {Button} from '../../common';
 import {PCardProps} from './p-card-types';
@@ -10,8 +11,9 @@ const PCard = observer((props: PCardProps) => {
     <Card>
       <Title>
         <img src={Images.List} alt="List" width={35} />
-        {props.itemEntity?.title}
+        <Link to={`/item/${props.itemEntity?.id}`}>{props.itemEntity?.title}</Link>
       </Title>
+
       <Actions>
         <Checkbox>
           Mark us {props.itemEntity?.completed ? 'undone' : 'done'}

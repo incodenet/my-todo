@@ -27,6 +27,10 @@ class ToDo {
   complete(id: number) {
     this.todos = this.todos.map(t => (t.id === id ? {...t, completed: !t.completed} : t));
   }
+
+  getToDoItem(id: number) {
+    return this.todos.find(t => t.id === id);
+  }
 }
 
 export default new ToDo();
