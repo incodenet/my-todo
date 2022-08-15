@@ -28,6 +28,22 @@ class ToDo {
     this.todos = this.todos.map(t => (t.id === id ? {...t, completed: !t.completed} : t));
   }
 
+  searchByName(searchQuery: string, sortValue: boolean) {
+    return !sortValue
+      ? this.todos.filter(t => t?.title?.toLowerCase().includes(searchQuery.toLowerCase().trim()))
+      : this.todos
+          .filter(t => t?.title?.toLowerCase().includes(searchQuery.toLowerCase().trim()))
+          .filter(t => t?.completed === sortValue);
+  }
+
+  sortByCompleted(completed: boolean, searchQuery: string) {
+    return completed
+      ? this.todos
+          .filter(t => t?.completed === completed)
+          .filter(t => t?.title?.toLowerCase().includes(searchQuery.toLowerCase().trim()))
+      : this.todos.filter(t => t?.title?.toLowerCase().includes(searchQuery.toLowerCase().trim()));
+  }
+
   getToDoItem(id: number) {
     return this.todos.find(t => t.id === id);
   }

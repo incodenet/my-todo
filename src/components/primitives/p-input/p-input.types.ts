@@ -5,5 +5,6 @@ export type PInputProps = {
   name?: string;
   id?: string;
   placeholder?: string;
+  autoFocus?: boolean;
   onChange?: (e: any) => void;
 };

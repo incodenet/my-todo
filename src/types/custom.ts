@@ -1,6 +1,7 @@
 export type ToDoItem = {
   id?: number;
   title?: string;
+  created?: string;
   completed?: boolean;
 };
 

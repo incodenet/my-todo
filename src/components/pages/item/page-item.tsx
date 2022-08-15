@@ -6,7 +6,7 @@ import todo from '../../../store/todo';
 import {ToDoItem} from '../../../types/custom';
 import {BackButton, Button} from '../../common';
 import {Checkbox} from '../../primitives/p-card/p-card.styled';
-import {Header, NavTitle, Title, Wrapper, Actions} from './page-item.styled';
+import {Header, NavTitle, Title, Wrapper, Actions, Created} from './page-item.styled';
 
 export const PageItem = observer(() => {
   const {id} = useParams();
@@ -35,6 +35,11 @@ export const PageItem = observer(() => {
 
       <Wrapper>
         <Title>{itemEntity.title}</Title>
+
+        <Created>
+          &#128197; <b>Created: </b> {itemEntity.created}
+        </Created>
+        <hr />
         <Actions>
           <Checkbox>
             Mark us {itemEntity?.completed ? 'undone' : 'done'}

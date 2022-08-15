@@ -27,3 +27,7 @@ export const NavTitle = styled.h2`
 export const Title = styled.h1`
   margin-top: 0;
 `;
+
+export const Created = styled.div`
+  margin-bottom: 15px;
+`;

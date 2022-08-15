@@ -16,12 +16,7 @@ export const PageList = observer(() => {
 
   const handleSearchQuery = useCallback(
     (e: any) => {
-      // TODO: refactor this array, move filter logic to store
-      const filtered = !sortValue
-        ? todo.todos.filter(t => t?.title?.toLowerCase().includes(e.target.value.toLowerCase().trim()))
-        : todo.todos
-            .filter(t => t?.title?.toLowerCase().includes(e.target.value.toLowerCase().trim()))
-            .filter(t => t?.completed === sortValue);
+      const filtered = todo.searchByName(e.target.value, sortValue);
 
       setSearchQuery(e.target.value);
 
@@ -33,16 +28,9 @@ export const PageList = observer(() => {
   const handleSorting = useCallback(
     (e: any) => {
       const completed = e.target.value === 'completed' && true;
-
-      // TODO: refactor this array, move filter logic to store
-      const sorted = completed
-        ? todo.todos
-            .filter(t => t?.completed === completed)
-            .filter(t => t?.title?.toLowerCase().includes(searchQuery.toLowerCase().trim()))
-        : todo.todos.filter(t => t?.title?.toLowerCase().includes(searchQuery.toLowerCase().trim()));
+      const sorted = todo.sortByCompleted(completed, searchQuery);
 
       setSortValue(completed);
-
       setList(sorted);
     },
     [searchQuery]
@@ -50,6 +38,7 @@ export const PageList = observer(() => {
 
   useEffect(() => {
     setList(todo.todos);
+
     // TODO: refactor this part for deps
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [todo.todos]);

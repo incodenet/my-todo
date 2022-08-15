@@ -42,4 +42,8 @@ export const GlobalStyles = createGlobalStyle`
 	grid-template-columns: 1fr 56px;
 	gap: 15px;
   }
+
+  hr {
+	margin: 1.5em 0;
+  }
 `;
